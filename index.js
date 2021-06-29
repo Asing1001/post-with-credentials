@@ -10,9 +10,8 @@ geb.listen(3000, () => console.log('geb start on 3000'))
 geb.set('views', path.join(__dirname, 'views'))
 geb.set('view engine', 'ejs')
 geb.use(express.urlencoded())
-geb.use(cors({ credentials: true, origin:true }))
 
-geb.post('/callback', (req, res) => {
+geb.post('/callback', cors({ credentials: true, origin:true }), (req, res) => {
   req.session.metaData = req.body.metaData
   console.log(req.body);
   res.send('ok')
