@@ -5,7 +5,7 @@ const geb = express()
 const session = require('express-session')
 
 
-geb.use(session({ secret: 'gebsecret', saveUninitialized: true, resave: true }))
+geb.use(session({ secret: 'gebsecret', saveUninitialized: true, resave: true, cookie: {sameSite: 'lax'} }))
 geb.listen(3000, () => console.log('geb start on 3000'))
 geb.set('views', path.join(__dirname, 'views'))
 geb.set('view engine', 'ejs')
