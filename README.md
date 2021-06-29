@@ -1,6 +1,9 @@
 # post-with-credentials
 
-## Start
+- ![cross domain](materials/cross-domain-post-withcookie.jpg)
+- [Video DEMO](materials/geb-travel.mp4)
+
+## Run yourself
 
 ```js
 yarn
