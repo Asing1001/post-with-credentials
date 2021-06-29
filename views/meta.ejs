@@ -9,7 +9,10 @@
     setTimeout(() => {
       const gebDomain = 'http://localhost:3000'
       fetch(gebDomain + '/callback', {credentials:"include", body: new URLSearchParams({metaData: 'metaData'}), method:'POST'})
-      location.href = gebDomain
+        .then(res=> res.text())
+        .then(()=>{
+          location.href = gebDomain
+        })
     }, 3000);
   </script>
 </head>
