@@ -6,25 +6,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>META page</title>
   <script>
-    setTimeout(() => {
+    function postWithCookie() {
       const gebDomain = 'http://localhost:3000'
-      fetch(gebDomain + '/callback', {credentials:"include", body: new URLSearchParams({metaData: 'metaData'}), method:'POST'})
+      fetch(gebDomain + '/callback', {credentials:"include", body: new URLSearchParams({metaData: 'postWithCookie'}), method:'POST'})
         .then(res=> res.text())
         .then(()=>{
-          location.href = gebDomain
-        })
-    }, 3000);
+          location.href = gebDomain + '/postwithcookie'
+        }) 
+    }      
+
+    function postWithCookieAndMetaKey() {
+      const gebDomain = 'http://localhost:3000'
+      const metaKey = new URL(location.href).searchParams.get('metaKey')
+      fetch(gebDomain + '/callbackWithMetaKey', { body: new URLSearchParams({metaData: 'postWithCookieAndMetaKey', metaKey }), method:'POST'})
+        .then(res=> res.text())
+        .then(()=>{
+          location.href = gebDomain + '/postWithCookieAndMetaKey'
+        }) 
+    } 
   </script>
 </head>
 <body>
-  <h1>This is Family service page, we are auto post the {metaData: 'metaData'} in 3 second...</h1>
-  FYI:
-  <code>
-    setTimeout(() => {
-      const gebDomain = 'http://localhost:3000'
-      fetch(gebDomain + '/callback', {credentials:"include", body: new URLSearchParams({metaData: 'metaData'}), method:'POST'})
-      location.href = gebDomain
-    }, 3000);
-  </code>
+  <h1>This is Family service page.</h1>
+  <button onclick="postWithCookie()">
+  <h1>
+    postWithCookie
+  </h1>
+  </button>
+
+  <form method="POST" action="http://localhost:3000/formpost">
+    <input type="text" name="metaData" value="formpost" hidden>
+    <button type="submit"><h1>submit form post</h1></button>
+  </form>
+
+  <button onclick="postWithCookieAndMetaKey()">
+    <h1>
+      postWithCookieAndMetaKey
+    </h1>
+    </button>
+  <hr>
+  <a href="http://localhost:3000/">Restart From GEB Home page</a>
 </body>
 </html>

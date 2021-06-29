@@ -11,8 +11,18 @@
   This is GEB poll page, the callback meta is:
   </h1>
   <h2>
-    <%= metaData %> 
+    MetaDATA: <%= metaData %> 
   </h2>
-  <a href="http://localhost:3333">Travel meta page</a>
+  <h2>
+    isLogin: <%= isLogin %>
+  </h2>
+  <a href="http://127.0.0.1:3333">Travel meta page</a>
+  <hr>
+  <% if (typeof metaKey !== 'undefined') { %>
+  <a href="http://127.0.0.1:3333?metaKey=<%= metaKey %>">Travel meta page with Meta Key</a>
+  <% } %>
+  <hr>
+  <a href="http://localhost:3000/">Restart From Home page</a>
+
 </body>
 </html>
